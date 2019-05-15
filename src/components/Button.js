@@ -4,26 +4,7 @@ import PropTypes from "prop-types";
 import "style/button.css";
 
 const Button = props => {
-  let styleBtn = "";
-  switch (props.typeBtn) {
-    case "del_btn_col":
-      styleBtn += "del_btn del_column";
-      break;
-    case "del_btn_row":
-      styleBtn += "del_btn del_row";
-      break;
-    case "add_column":
-      styleBtn += "add_btn add_column";
-      break;
-    case "add_row":
-      styleBtn += "add_btn add_row";
-      break;
-    case "hide-btn":
-      styleBtn += "hide-btn";
-      break;
-    default:
-      styleBtn += "";
-  }
+  const styleBtn = GetStyle(props.typeBtn);
   return (
     <div
       className={`button ${styleBtn}`}
@@ -51,4 +32,20 @@ Button.propTypes = {
   moveLeft: PropTypes.number
 };
 
+const GetStyle = style => {
+  switch (style) {
+    case "del_btn_col":
+      return "del_btn del_column";
+    case "del_btn_row":
+      return "del_btn del_row";
+    case "add_column":
+      return "add_btn add_column";
+    case "add_row":
+      return "add_btn add_row";
+    case "hide-btn":
+      return "hide-btn";
+    default:
+      return "";
+  }
+};
 export default Button;

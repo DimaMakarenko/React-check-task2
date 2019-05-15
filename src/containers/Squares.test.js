@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Squares from "./Squares";
 
 Enzyme.configure({ adapter: new Adapter() });
-/*
+
 it("Test for correct props:height and width", () => {
   const props = {
     initialHeight: 4,
@@ -39,9 +39,9 @@ it("test to add row/column", () => {
   expect(newContainer.state().initialWidth.length).toEqual(
     props.initialWidth + 1
   );
-    newContainer.unmount();
+  newContainer.unmount();
 });
-*/
+
 it("test to delete row/column", () => {
   const props = {
     initialHeight: 4,
@@ -49,92 +49,142 @@ it("test to delete row/column", () => {
   };
   const newContainer = mount(<Squares {...props} />);
   newContainer.setState({
-    initialHeight: "del_btn_col",
-    initialWidth: "del_btn_row"
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
   });
+
   newContainer
     .find(".del_column")
     .first()
     .simulate("click");
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   expect(newContainer.state().initialHeight.length).toEqual(
     props.initialHeight - 1
   );
 
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   newContainer
     .find(".del_row")
     .first()
     .simulate("click");
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   expect(newContainer.state().initialWidth.length).toEqual(
     props.initialWidth - 1
   );
+
   newContainer.unmount();
-}); /*
-it('test to add row/column DOM', () => {
+});
+it("test to add row/column DOM", () => {
   const props = {
     initialHeight: 4,
     initialWidth: 4
   };
   const newContainer = mount(<Squares {...props} />);
 
+  newContainer
+    .find(".add_column")
+    .first()
+    .simulate("click");
+  expect(
     newContainer
-        .find(".add_column")
-        .first()
-        .simulate("click");
-        expect(newContainer.find('tbody').find('tr').first().children().length).toEqual(props.initialHeight + 1);
+      .find("tbody")
+      .find("tr")
+      .first()
+      .children().length
+  ).toEqual(props.initialHeight + 1);
 
+  newContainer
+    .find(".add_row")
+    .first()
+    .simulate("click");
+  expect(newContainer.find("tbody").children().length).toEqual(
+    props.initialWidth + 1
+  );
+  newContainer.unmount();
+});
 
-    newContainer
-        .find(".add_row")
-        .first()
-        .simulate("click");
-    expect(newContainer.find('tbody').children().length).toEqual(props.initialWidth + 1);
-    newContainer.unmount();
-})*/
-/*
 it("test to not delete last row/column", () => {
   const props = {
     initialHeight: 1,
     initialWidth: 1
   };
   const newContainer = mount(<Squares {...props} />);
-    newContainer.setState({initialHeight:'del_btn_col',initialWidth:'del_btn_row'});
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   newContainer
     .find(".del_column")
     .first()
     .simulate("click");
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   expect(newContainer.state().initialHeight.length).toEqual(
     props.initialHeight
   );
-
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   newContainer
     .find(".del_row")
     .first()
     .simulate("click");
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
   expect(newContainer.state().initialWidth.length).toEqual(props.initialWidth);
   newContainer.unmount();
 });
 
-*/
-/*
-it('test to del row/column DOM', () => {
-    const props = {
-        initialHeight: 4,
-        initialWidth: 4
-    };
-    const newContainer = mount(<Squares {...props} />);
-    newContainer.setState({initialHeight:'del_btn_col',initialWidth:'del_btn_row'});
+it("test to del row/column DOM", () => {
+  const props = {
+    initialHeight: 4,
+    initialWidth: 4
+  };
+  const newContainer = mount(<Squares {...props} />);
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
+  newContainer
+    .find(".del_column")
+    .first()
+    .simulate("click");
+  expect(
     newContainer
-        .find(".del_column")
-        .first()
-        .simulate("click");
-    expect(newContainer.find('tbody').find('tr').first().children().length).toEqual(props.initialHeight - 1);
+      .find("tbody")
+      .find("tr")
+      .first()
+      .children().length
+  ).toEqual(props.initialHeight - 1);
 
-
-    newContainer
-        .find(".del_row")
-        .first()
-        .simulate("click");
-    expect(newContainer.find('tbody').children().length).toEqual(props.initialWidth - 1);
-    newContainer.unmount();
-})
-*/
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
+  newContainer
+    .find(".del_row")
+    .first()
+    .simulate("click");
+  newContainer.setState({
+    hideBtnCol: "del_btn_col",
+    hideBtnRow: "del_btn_row"
+  });
+  expect(newContainer.find("tbody").children().length).toEqual(
+    props.initialWidth - 1
+  );
+  newContainer.unmount();
+});
