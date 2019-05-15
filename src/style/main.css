@@ -1,0 +1,12 @@
+.flex-div {
+  display: flex;
+  margin: 49px 49px 0 49px;
+}
+html {
+  margin: 0;
+  padding: 0;
+}
+.main {
+  margin: 50px;
+  display: inline-block;
+}

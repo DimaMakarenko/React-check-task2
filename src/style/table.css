@@ -1,0 +1,12 @@
+.table {
+  padding: 0px;
+  border: 1px solid #48aae6;
+  margin: 1px;
+}
+.table td {
+  padding: 0px;
+}
+.table tr > td {
+  min-width: 50px;
+  background-color: #48aae6;
+}
